@@ -1,0 +1,15 @@
+.esperia__editor{
+    padding: 1.2rem;
+    box-sizing: border-box;
+}
+.esperia__editor .toolbar{
+    display: flex;
+    flex-direction: row;
+    padding-top: 1.2rem;
+    padding-bottom: 1.5rem;
+}
+.esperia__editor .toolbar > * {
+    margin-left: .2rem;
+    margin-right: .2rem;
+    min-width: 32px;
+}

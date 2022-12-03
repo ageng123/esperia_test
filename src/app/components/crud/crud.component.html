@@ -1,0 +1,98 @@
+<form #crudForm="ngForm" class="CrudBasic__Form mb-2 pl-2 pr-2">
+    <div class="flex flex-row">
+        <div class="CrudBasic__InputContainer">
+            <div class="form-control">
+                <label for="">Firstname</label>
+                <input type="text" [(ngModel)]="data.FirstName" [ngModelOptions]="{standalone: true}" placeholder="FirstName">
+            </div>
+            <div class="form-control">
+                <label for="">Gender</label>
+                <input id="male" [(ngModel)]="data.Gender" [ngModelOptions]="{standalone: true}" name="gender" value="male" type="radio" >
+                <label for="male">Male</label>
+                <input id="female" [(ngModel)]="data.Gender" [ngModelOptions]="{standalone: true}" name="gender" value="female" type="radio" >
+                <label for="female">Female</label>
+            </div>
+            <div class="form-control">
+                <label for="">Address</label>
+                <textarea [(ngModel)]="data.Address" [ngModelOptions]="{standalone: true}"></textarea>
+            </div>
+            <div class="form-control">
+                <label for="">Qualification</label>
+                <select [(ngModel)]="data.Qualification" [ngModelOptions]="{standalone: true}" name="" id="">
+                    <option *ngFor="let qualification of Qualification" value="{{qualification}}">{{ qualification }}</option>
+                </select>
+            </div>
+            <div class="form-control">
+                <label for="">Profile Image</label>
+                <input [(ngModel)]="imageInput" [ngModelOptions]="{standalone: true}" type="file" (change)="handleUpload($event)" placeholder="FirstName">
+            </div>
+        </div>
+        <div class="CrudBasic__InputContainer">
+            <div class="form-control">
+                <label for="">Lastname</label>
+                <input  [(ngModel)]="data.LastName" [ngModelOptions]="{standalone: true}" type="text" placeholder="Lastname">
+            </div>
+            <div class="form-control">
+                <label for="">DOB</label>
+                <input  [(ngModel)]="data.DOB" [ngModelOptions]="{standalone: true}" type="date" placeholder="DOB">
+            </div>
+            <div class="form-control">
+                <label for="">Languange Known</label>
+                <div class="Checkbox__Group" style="flex: 1">
+                    <div style="display: flex; flex-direction: row;justify-content: center;align-items: center;" *ngFor="let checkbox of LanguageKnown; let i = index">
+                        <input  [(ngModel)]="data.LanguageKnown[i]" [ngModelOptions]="{standalone: true}" (change)="checkboxCheck($event)" value="{{ i }}" type="checkbox" style="height: 100%;" >
+                        <label for="">{{ checkbox }}</label>
+                    </div>
+                </div>
+            </div>
+            <div [ngClass]="'form-control '+ (isOpen ? 'show' : 'hidden')">
+                <label for="">Language Name</label>
+                <input  [(ngModel)]="data.OtherLanguage" [ngModelOptions]="{standalone: true}" type="text" placeholder="Language Name">
+            </div>
+            <div class="form-control">
+                <label for="">Specialization</label>
+                <input  [(ngModel)]="data.Specialization" [ngModelOptions]="{standalone: true}" type="text" placeholder="Specialization">
+            </div>
+            <div class="form-control">
+                <label for="">Contact #</label>
+                <input  [(ngModel)]="data.Contact" [ngModelOptions]="{standalone: true}" type="text" placeholder="Contact #">
+            </div>
+           
+        </div>
+    </div>
+    <div class="CrudBasic__FormActionContainer">
+        <button (click)="saveChanges(crudForm)" class="FormAction__Save">Save</button> 
+    </div>
+</form>
+<div style="padding-left: .5rem; padding-right: .5rem">
+<table border="1" class="CrudBasic__Table mt-2" cellspacing="0" cellpadding="15">
+    <tr>
+        <th>Name</th>
+        <th>Age</th>
+        <th>DOB</th>
+        <th>Gender</th>
+        <th>Language Known</th>
+        <th>Qualification</th>
+        <th>Specialization</th>
+        <th>Contact #</th>
+        <th>Profile Image</th>
+        <th>Operations</th>
+    </tr>
+    <tbody *ngIf="tbData.length > 0 as result">
+        <tr *ngFor="let val of tbData; let i = index">
+            <td>{{ val?.FirstName  }} {{ val?.LastName }}</td>
+            <td> {{ val?.age }} </td>
+            <td>{{ val?.DOB }}</td>
+            <td>{{ val?.Gender }}</td>
+            <td>{{ val?.language }}</td>
+            <td>{{ val?.Qualification }}</td>
+
+            <td>{{ val?.Specialization }}</td>
+            <td>{{ val?.Contact }}</td>
+            <td><img width="75" height="75" src="{{ val?.profileImage }}"> </td>
+            <td style="text-align: center"> <a style="" (click)="handleEdit($event, val?.id)" href="">Edit</a> | <a (click)="handleDelete($event,val?.id)" href="">Hapus</a> </td>
+
+        </tr>
+    </tbody>
+</table>
+</div>

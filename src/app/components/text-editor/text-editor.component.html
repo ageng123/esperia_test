@@ -1,0 +1,33 @@
+<div class="esperia__editor">
+    <div style="background: #21212121" class="toolbar">
+        <button (click)="changeStyle('font-weight','bold')">B</button>
+        <button (click)="changeStyle('font-weight','italic')">I</button>
+        <button (click)="changeStyle('font-weight','underline')">U</button>
+        <input placeholder="font-size" value="12" (change)="changeStyle('font-size',$event.target)">
+
+        <button (click)="textEditorAction('cut',$event)">cut</button>
+        <button (click)="textEditorAction('copy',$event)">copy</button>
+        <button (click)="textEditorAction('insertText', $event)">paste</button>
+        <button (click)="changeStyle('text-align','justifyLeft')">left</button>
+        <button (click)="changeStyle('text-align','justifyCenter')">center</button>
+        <button (click)="changeStyle('text-align','justifyRight')">right</button>
+        <button (click)="changeStyle('text-align','justifyFull')">justify</button>
+        <button (click)="changeStyle('text-indent','indent')">add_indentation</button>
+        <button (click)="changeStyle('text-indent','remove_indent')">remove_indentation</button>
+        <button (click)="changeStyle('text-order','insertOrderedList')">ordered list</button>
+        <button (click)="changeStyle('text-order','insertUnorderedList')">unordered list</button>
+        <input type="color" (change)="changeStyle('font-color',$event.target)">
+        <select (change)="changeStyle('text-tag',$event.target)">
+            <option value="p">p</option>
+            <option value="h1">h1</option>
+            <option value="h2">h2</option>
+            <option value="h3">h3</option>
+            <option value="h4">h4</option>
+            <option value="h5">h5</option>
+            <option value="h6">h6</option>
+            <option value="div">div</option>
+
+        </select>
+    </div>
+    <div id="esperia__writer" contenteditable="true" style="width: 100%;box-sizing: border-box;padding:2rem;border-radius: 3px; border: 1px solid #25252550">test</div>
+</div>
